@@ -1,0 +1,34 @@
+# EditorConfig is awesome: https://EditorConfig.org
+
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Matches multiple files with brace expansion notation
+[*.{js,ts,tsx,jsx,json,md,html,css,scss}]
+indent_size = 2
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+# Tab indentation for Makefiles
+[Makefile]
+indent_style = tab
+
+# 4 space indentation for YAML files
+[*.yml]
+indent_size = 4
+
+# Ignore minified files and binary files
+[*.min.js]
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+[*.{png,jpg,jpeg,gif,ico}]
+binary = true
