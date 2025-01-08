@@ -1,9 +1,8 @@
 import { Router } from "express";
+import RoadmapsController from "../controllers/roadmaps.controller";
 
 const router = Router()
 
-router.get('/', (req, res) => {
-  res.send('Hello World')
-})
+router.get('/', RoadmapsController.getCategories);
 
 export default router;
