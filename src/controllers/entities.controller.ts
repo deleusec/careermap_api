@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import EntitiesService from "../services/entities.service";
+import { createEntity, updateEntity } from "../schemas/entities.schema";
 
 export default class EntitiesController {
   static async getEntities(req: Request, res: Response) {
@@ -12,9 +13,9 @@ export default class EntitiesController {
   }
 
   static async getEntity(req: Request, res: Response) {
-    const { type, id } = req.params;
+    const { id } = req.params;
     try {
-      const entity = await EntitiesService.getEntity(type, parseInt(id));
+      const entity = await EntitiesService.getEntity(parseInt(id));
       if (!entity) return res.status(404).json({ message: "Entity not found" });
       res.status(200).json(entity);
     } catch (error : any) {
@@ -23,7 +24,7 @@ export default class EntitiesController {
   }
 
   static async createEntity(req: Request, res: Response) {
-    const data = req.body;
+    const data = createEntity.parse(req.body);
     try {
       const newEntity = await EntitiesService.createEntity(data);
       res.status(201).json(newEntity);
@@ -33,10 +34,10 @@ export default class EntitiesController {
   }
 
   static async updateEntity(req: Request, res: Response) {
-    const { type, id } = req.params;
-    const data = req.body;
+    const { id } = req.params;
+    const data = updateEntity.parse(req.body);
     try {
-      const updatedEntity = await EntitiesService.updateEntity(type, parseInt(id), data);
+      const updatedEntity = await EntitiesService.updateEntity(parseInt(id), data);
       if (!updatedEntity) return res.status(404).json({ message: "Entity not found" });
       res.status(200).json(updatedEntity);
     } catch (error : any) {
@@ -45,9 +46,9 @@ export default class EntitiesController {
   }
 
   static async deleteEntity(req: Request, res: Response) {
-    const { type, id } = req.params;
+    const { id } = req.params;
     try {
-      const deleted = await EntitiesService.deleteEntity(type, parseInt(id));
+      const deleted = await EntitiesService.deleteEntity(parseInt(id));
       if (!deleted) return res.status(404).json({ message: "Entity not found" });
       res.status(200).json({ message: "Entity deleted successfully" });
     } catch (error : any) {

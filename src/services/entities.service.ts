@@ -9,9 +9,9 @@ export default class EntitiesService {
     });
   }
 
-  static async getEntity(type: string, id: number) {
+  static async getEntity(id: number) {
     return prisma.entity.findFirst({
-      where: { id, type },
+      where: { id },
       include: {
         category: true,
         parents: { include: { parent: true } },
@@ -32,9 +32,9 @@ export default class EntitiesService {
     });
   }
 
-  static async updateEntity(type: string, id: number, data: any) {
+  static async updateEntity(id: number, data: any) {
     return prisma.entity.updateMany({
-      where: { id, type },
+      where: { id },
       data: {
         name: data.name,
         description: data.description,
@@ -44,9 +44,9 @@ export default class EntitiesService {
     });
   }
 
-  static async deleteEntity(type: string, id: number) {
+  static async deleteEntity(id: number) {
     return prisma.entity.deleteMany({
-      where: { id, type },
+      where: { id },
     });
   }
 }

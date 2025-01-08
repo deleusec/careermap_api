@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: careermap-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: careermap.2025
+      POSTGRES_DB: careermap
+    ports:
+      - '5433:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data # Persistance des données
+
+volumes:
+  postgres_data:

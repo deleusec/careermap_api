@@ -8,7 +8,9 @@
     "start": "node src/app.js",
     "build": "tsc",
     "test": "jest",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "docker:build": "docker-compose up -d",
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [
     "careermap",

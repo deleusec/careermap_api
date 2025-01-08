@@ -1,8 +1,8 @@
 import { Router } from "express";
 import RoadmapsController from "../controllers/roadmaps.controller";
 
-const router = Router()
+const router = Router();
 
-router.get('/', RoadmapsController.getCategories);
+router.get("/:id", RoadmapsController.getRoadmap);
 
 export default router;
