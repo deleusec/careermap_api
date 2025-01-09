@@ -30,7 +30,9 @@ app.use(
 app.use(hpp())
 app.use(
   cors({
-    origin: process.env.ALLOWED_ORIGINS?.split(',') || [],
+    origin: process.env.NODE_ENV === 'production'
+      ? process.env.ALLOWED_ORIGINS?.split(',') || []
+      : '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   }),
