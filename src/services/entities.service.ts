@@ -9,15 +9,14 @@ export default class EntitiesService {
     });
   }
 
-  static async getEntity(id: number) {
-    return prisma.entity.findFirst({
-      where: { id },
+  static async getEntity(categoryId: number) {
+    return prisma.entity.findMany({
+      where: { categoryId },
       include: {
         category: true,
-        parents: { include: { parent: true } },
-        children: { include: { child: true } },
       },
     });
+
   }
 
   static async createEntity(data: any) {
