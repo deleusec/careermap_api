@@ -18,7 +18,6 @@
     "typescript",
     "express",
     "prisma",
-    "postgres",
     "redis",
     "jwt"
   ],
